@@ -22,3 +22,20 @@ if choice == 'y':
     results = request.json()
 
     print(json.dumps(results, sort_keys=True, indent=4))
+
+data = results['data']
+
+print()
+for currency in data:
+        rank = currency('rank')
+        name = currency('name')
+        symbol = currency('symbol')
+
+        circulating_supply = int(currency['circulating_supply'])
+        total_supply = int(currency['total_supply'])
+
+        quotes = currency[quotes][convert]
+        market_cap = quotes['market_cap']
+        hourly_change = quotes['prevent_change_1h']
+        day_change = quotes['prevent_change_24h']
+        week_change = quotes['prevent_change_7d']
