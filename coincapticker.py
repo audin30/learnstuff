@@ -39,3 +39,12 @@ for currency in data:
         hourly_change = quotes['prevent_change_1h']
         day_change = quotes['prevent_change_24h']
         week_change = quotes['prevent_change_7d']
+        price = quotes['price']
+        volume = quotes['volume_24']
+
+        volume_string = '{:,}'.format(volume)
+        marketcap_string = '{:,}'.format(market_cap)
+        circulating_supply_string = '{:,}'.format(circulating_supply)
+        total_supply_string = '{:,}'.format(circulating_supply)
+
+        
