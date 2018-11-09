@@ -27,24 +27,34 @@ data = results['data']
 
 print()
 for currency in data:
-        rank = currency('rank')
-        name = currency('name')
-        symbol = currency('symbol')
+        rank = currency['rank']
+        name = currency['name']
+        symbol = currency['symbol']
 
         circulating_supply = int(currency['circulating_supply'])
         total_supply = int(currency['total_supply'])
 
-        quotes = currency[quotes][convert]
+        quotes = currency['quotes'][convert]
         market_cap = quotes['market_cap']
-        hourly_change = quotes['prevent_change_1h']
-        day_change = quotes['prevent_change_24h']
-        week_change = quotes['prevent_change_7d']
+        hourly_change = quotes['percent_change_1h']
+        day_change = quotes['percent_change_24h']
+        week_change = quotes['percent_change_7d']
         price = quotes['price']
-        volume = quotes['volume_24']
+        volume = quotes['volume_24h']
 
         volume_string = '{:,}'.format(volume)
         marketcap_string = '{:,}'.format(market_cap)
         circulating_supply_string = '{:,}'.format(circulating_supply)
         total_supply_string = '{:,}'.format(circulating_supply)
+        price_string = '{:,}'.format(price)
 
-        
+        print(str(rank) + ': ' + name + '( '+ symbol + ')')
+        print('Market cap: $' + marketcap_string)
+        print('Price: $' + price_string)
+        print('24 Volume: $' + volume_string)
+        print('Hourly Change: $' + str(hourly_change) + '%')
+        print('Week Change: $' +str(week_change) + '%')
+        print('Total Supply: $' + total_supply_string)
+        print('Circulating Supply: $' + circulating_supply_string)
+        print('Percentage of coins in circulation: ' + str(int(circulating_supply / total_supply * 100)))
+        print()
