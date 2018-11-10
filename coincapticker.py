@@ -58,3 +58,8 @@ for currency in data:
         print('Circulating Supply: $' + circulating_supply_string)
         print('Percentage of coins in circulation: ' + str(int(circulating_supply / total_supply * 100)))
         print()
+
+        choice = input('Again? ')
+
+        if choice == 'n':
+            break 
