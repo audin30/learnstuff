@@ -49,7 +49,19 @@ with open("portfolio.txt") as inp:
             week_change = quotes['percent_change_24h']
             price = quotes['price']
 
-            value = float(price) * f;
+            value = float(price) * float(amount)
+
+            if hour_change > 0:
+                hour_change = Back.Green + str(hour_change) + '%' + Style.RESET_ALL
+            else:
+                hour_change = Back.RED + str(hour_change) + '%' + Style.RESET_ALL
+
+            if day_change > 0
+                day_change = Back.GREEN + str(day_change) + '%' + Style.RESET_ALL
+            else:
+                day_change = Back.RED + str(day_change) + '%' + Style.RESET_ALL
+
+            if week_change > 0
 
 
 #print(json.dumps(results, sort_keys=True, indent=4))
