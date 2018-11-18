@@ -14,6 +14,7 @@ request = requests.get(listings_url)
 results = request.json()
 date = results['data']
 
+ticker_url_pairs = {}
 for currency in data:
     symbol = currency['symbol']
     url = currencty['id']
@@ -56,12 +57,31 @@ with open("portfolio.txt") as inp:
             else:
                 hour_change = Back.RED + str(hour_change) + '%' + Style.RESET_ALL
 
-            if day_change > 0
+            if day_change > 0:
                 day_change = Back.GREEN + str(day_change) + '%' + Style.RESET_ALL
             else:
                 day_change = Back.RED + str(day_change) + '%' + Style.RESET_ALL
 
-            if week_change > 0
+            if week_change > 0:
+                week_change = Back.GREEN + str(week_change) + '%' + Style.RESET_ALL
+            else:
+                week_change = Back.RED + str(week_change) + '%' + Style.RESET_ALL
+
+            portfolio_value += Value
+
+            value_string = '{:,}'.format(round(value,2))
+
+            table.add_row([name + '(' + symbol + ')',
+                            amount,
+                            '$' + value_string,
+                            '$' + str(price),
+                            str(hour_change),
+                            str(day_change),
+                            str(week_change)])
+
+            print(table)
+            print()
+
 
 
 #print(json.dumps(results, sort_keys=True, indent=4))
