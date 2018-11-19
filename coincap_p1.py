@@ -12,16 +12,16 @@ url_end = '?structure=array&convert=' + convert
 
 request = requests.get(listings_url)
 results = request.json()
-date = results['data']
+data = results['data']
 
 ticker_url_pairs = {}
 for currency in data:
     symbol = currency['symbol']
-    url = currencty['id']
-    ticker_url_pairs[symbold] = url
+    url = currency['id']
+    ticker_url_pairs[symbol] = url
 
 print()
-print("MY PORTFOLIO")
+print('MY PORTFOLIO')
 print()
 
 portfolio_value = 0.00
@@ -29,22 +29,22 @@ last_updated = 0
 
 table = PrettyTable(['Asset', 'Amount Owned', convert + ' Value', 'Price', '1h', '24h'])
 
-with open("portfolio.txt") as inp:
+with open('portfolio.txt') as inp:
     for line in inp:
             ticker, amount = line.split()
             ticker = ticker.upper()
 
             ticker_url = 'https://api.coinmarketcap.com/v2/ticker/' + str(ticker_url_pairs[ticker]) +'/' + url_end
 
-            request = requests.request.get(ticker_url)
+            request = requests.get(ticker_url)
             results = request.json()
 
-            currencty = results['data'][0]
-            rank = currencty['rank']
-            name = currenct['name']
-            last_updated = currencu['last_updated']
-            symbol = currencty['symbol']
-            quotes = currencty['quotes'][convert]
+            currency = results['data'][0]
+            rank = currency['rank']
+            name = currency['name']
+            last_updated = currency['last_updated']
+            symbol = currency['symbol']
+            quotes = currency['quotes'][convert]
             hour_change = quotes['percent_change_1h']
             day_change = quotes['percent_change_24h']
             week_change = quotes['percent_change_24h']
@@ -53,7 +53,7 @@ with open("portfolio.txt") as inp:
             value = float(price) * float(amount)
 
             if hour_change > 0:
-                hour_change = Back.Green + str(hour_change) + '%' + Style.RESET_ALL
+                hour_change = Back.GREEN + str(hour_change) + '%' + Style.RESET_ALL
             else:
                 hour_change = Back.RED + str(hour_change) + '%' + Style.RESET_ALL
 
@@ -67,11 +67,11 @@ with open("portfolio.txt") as inp:
             else:
                 week_change = Back.RED + str(week_change) + '%' + Style.RESET_ALL
 
-            portfolio_value += Value
+            portfolio_value += value
 
             value_string = '{:,}'.format(round(value,2))
 
-            table.add_row([name + '(' + symbol + ')',
+            table.add_row([name + ' (' + symbol + ')',
                             amount,
                             '$' + value_string,
                             '$' + str(price),
@@ -82,6 +82,13 @@ with open("portfolio.txt") as inp:
             print(table)
             print()
 
+            portfolo_value_string = '{:,}'.format(round(portfolio_value,2))
+            last_updated_string = datetime.fromtimestamp(last_updated).strftime('%B $d, %Y at %I:%M%p')
+
+            print('Total Portfolio Value: ' + Back.Green + '$' + portfolo_value_string + Style.RESET_ALL)
+            print()
+            print('API Results Last Updated on ' + last_updated_string)
+            print()
 
 
 #print(json.dumps(results, sort_keys=True, indent=4))
