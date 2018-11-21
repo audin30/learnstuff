@@ -1,2 +1,0 @@
-# learnstuff
-learnstufffromudemy
