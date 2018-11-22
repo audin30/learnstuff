@@ -3,7 +3,7 @@ import requests
 
 api_key = input('Enter API Key: ')
 nasa_url = input('Enter API URL: ')
-#nasa_url = 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&format=json'
+# For more information on availabel data, go to https://exoplanetarchive.ipac.caltech.edu/index.html
 
 request = requests.get(nasa_url)
 results = request.json()
