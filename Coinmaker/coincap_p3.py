@@ -1,13 +1,13 @@
 import json
 import requests
 from datetime import datetime
-from prettytable import prettytable
+from prettytable import PrettyTable
 from colorama import Fore, Back, Style
 
-convert = 'JPY'
-global_url = 'https://api.coinmaker.com/v2/global/?convert=' + convert
+convert = 'USD'
+global_url = 'https://api.coinmarketcap.com/v2/global/?convert=' + convert
 
-request = request.get(global_url)
+request = requests.get(global_url)
 results = request.json()
 data = results['data']
 
@@ -46,7 +46,7 @@ while True:
 
     print()
     for currency in data:
-        rank = currency['data']
+        rank = currency['rank']
         name = currency['name']
         symbol = currency['symbol']
         quotes = currency['quotes'][convert]
@@ -71,9 +71,9 @@ while True:
 
         if week_change is not None:
             if week_change > 0:
-                week_change = Back.GREEN + str(week_change) + '%' Style.RESET_ALL
+                week_change = Back.GREEN + str(week_change) + '%' + Style.RESET_ALL
             else:
-                week_change = Back.RED + str(week_change) + '%' Style.RESET_ALL
+                week_change = Back.RED + str(week_change) + '%' + Style.RESET_ALL
 
         if volume is not None:
             volume_string = '{:,}'.format(volume)
@@ -81,7 +81,8 @@ while True:
         if market_cap is not None:
             market_cap_String = '{:,}'.format(market_cap)
 
-        table.add_row([rank, name + '(' + symbol + ')',
+        table.add_row([rank,
+                        name + ' ( ' + symbol + ')',
                         '$' + str(price),
                         '$' + str(market_cap),
                         '$' + volume_string,
@@ -93,7 +94,7 @@ while True:
         print(table)
         print()
 
-        choice = input('Again? Y/N: ')
+        choice = input('Again? y/n: ')
 
-        if choice == 'N':
+        if choice == 'n':
             break
