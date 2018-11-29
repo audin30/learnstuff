@@ -61,4 +61,39 @@ while True:
             if hour_change > 0:
                 hour_change = Back.GREEN + str(hour_change) + '%' + Style.RESET_ALL
             else:
-                hour_change = Back.RED + str(hour_change)
+                hour_change = Back.RED + str(hour_change) + '%' + Style.RESET_ALL
+
+        if day_change is not None:
+            if day_change > 0:
+                day_change = Back.GREEN + str(day_change) + '%' + Style.RESET_ALL
+            else:
+                day_change = Back.RED + str(day_change) + '%' + Style.RESET_ALL
+
+        if week_change is not None:
+            if week_change > 0:
+                week_change = Back.GREEN + str(week_change) + '%' Style.RESET_ALL
+            else:
+                week_change = Back.RED + str(week_change) + '%' Style.RESET_ALL
+
+        if volume is not None:
+            volume_string = '{:,}'.format(volume)
+
+        if market_cap is not None:
+            market_cap_String = '{:,}'.format(market_cap)
+
+        table.add_row([rank, name + '(' + symbol + ')',
+                        '$' + str(price),
+                        '$' + str(market_cap),
+                        '$' + volume_string,
+                        str(hour_change),
+                        str(day_change),
+                        str(week_change)])
+
+        print()
+        print(table)
+        print()
+
+        choice = input('Again? Y/N: ')
+
+        if choice == 'N':
+            break
