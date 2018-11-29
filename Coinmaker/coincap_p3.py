@@ -43,3 +43,8 @@ while True:
     data = results['data']
 
     table = PrettyTable(['Rank', 'Asset', 'Price', 'Market Cap', 'Volume', '1h', '24h', '7d'])
+
+    print()
+    for currency in data:
+        rank = currency['data']
+        
