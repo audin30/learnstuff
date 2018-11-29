@@ -47,4 +47,18 @@ while True:
     print()
     for currency in data:
         rank = currency['data']
-        
+        name = currency['name']
+        symbol = currency['symbol']
+        quotes = currency['quotes'][convert]
+        market_cap = quotes['market_cap']
+        hour_change = quotes['percent_change_1h']
+        day_change = quotes['percent_change_24h']
+        week_change = quotes['percent_change_7d']
+        price = quotes['price']
+        volume = quotes['volume_24h']
+
+        if hour_change is not None:
+            if hour_change > 0:
+                hour_change = Back.GREEN + str(hour_change) + '%' + Style.RESET_ALL
+            else:
+                hour_change = Back.RED + str(hour_change)
